@@ -1,0 +1,212 @@
+{
+  "main_agent": {
+    "success_rate": 0.0,
+    "average_steps": 100.0,
+    "average_reward": -1.0000000000000002,
+    "causal_understanding_score": 0.0,
+    "generalization_score": 0.0,
+    "instruction_following_score": 0.0,
+    "detailed_metrics": {
+      "basic": {
+        "success_rate": 0.0,
+        "average_steps": 100.0,
+        "average_reward": -1.0000000000000002
+      },
+      "intervention": {
+        "original_success_rate": 0.0,
+        "swapped_success_rate": 0.0,
+        "adaptation_score": 0.0,
+        "add_obstacle_success_rate": 0.0,
+        "remove_object_success_rate": 0.0,
+        "with_causal_action": 0.0,
+        "without_causal_action": 0.0,
+        "counterfactual_understanding": 0.0
+      },
+      "generalization": {
+        "source_performance": 0.0,
+        "transfer_to_complex": 0.0,
+        "average_transfer": 0.0,
+        "transfer_retention": 0.0,
+        "compositional_complex": 0.0,
+        "average_compositional": 0.0
+      },
+      "language": {
+        "simple_instruction_success": 0.0,
+        "sequential_instruction_success": 0.0,
+        "conditional_instruction_success": 0.0,
+        "spatial_instruction_success": 0.0,
+        "causal_instruction_success": 0.0,
+        "overall_instruction_following": 0.0,
+        "average_compositional_language": 0.5
+      }
+    }
+  },
+  "LSTM": {
+    "success_rate": 0.0,
+    "average_steps": 0.0,
+    "average_reward": 0.0,
+    "causal_understanding_score": 0.0,
+    "generalization_score": 0.0,
+    "instruction_following_score": 0.0,
+    "detailed_metrics": {
+      "basic": {
+        "success_rate": 0.0,
+        "average_steps": 0.0,
+        "average_reward": 0.0
+      },
+      "intervention": {
+        "original_success_rate": 0.0,
+        "swapped_success_rate": 0.0,
+        "adaptation_score": 0.0,
+        "add_obstacle_success_rate": 0.0,
+        "remove_object_success_rate": 0.0,
+        "with_causal_action": 0.0,
+        "without_causal_action": 0.0,
+        "counterfactual_understanding": 0.0
+      },
+      "generalization": {
+        "source_performance": 0.0,
+        "transfer_to_complex": 0.0,
+        "average_transfer": 0.0,
+        "transfer_retention": 0.0,
+        "compositional_complex": 0.0,
+        "average_compositional": 0.0
+      },
+      "language": {
+        "simple_instruction_success": 0.0,
+        "sequential_instruction_success": 0.0,
+        "conditional_instruction_success": 0.0,
+        "spatial_instruction_success": 0.0,
+        "causal_instruction_success": 0.0,
+        "overall_instruction_following": 0.0,
+        "average_compositional_language": 0.5
+      }
+    }
+  },
+  "CNN": {
+    "success_rate": 0.0,
+    "average_steps": 100.0,
+    "average_reward": -1.0000000000000002,
+    "causal_understanding_score": 0.0,
+    "generalization_score": 0.0,
+    "instruction_following_score": 0.0,
+    "detailed_metrics": {
+      "basic": {
+        "success_rate": 0.0,
+        "average_steps": 100.0,
+        "average_reward": -1.0000000000000002
+      },
+      "intervention": {
+        "original_success_rate": 0.0,
+        "swapped_success_rate": 0.0,
+        "adaptation_score": 0.0,
+        "add_obstacle_success_rate": 0.0,
+        "remove_object_success_rate": 0.0,
+        "with_causal_action": 0.0,
+        "without_causal_action": 0.0,
+        "counterfactual_understanding": 0.0
+      },
+      "generalization": {
+        "source_performance": 0.0,
+        "transfer_to_complex": 0.0,
+        "average_transfer": 0.0,
+        "transfer_retention": 0.0,
+        "compositional_complex": 0.0,
+        "average_compositional": 0.0
+      },
+      "language": {
+        "simple_instruction_success": 0.0,
+        "sequential_instruction_success": 0.0,
+        "conditional_instruction_success": 0.0,
+        "spatial_instruction_success": 0.0,
+        "causal_instruction_success": 0.0,
+        "overall_instruction_following": 0.0,
+        "average_compositional_language": 0.5
+      }
+    }
+  },
+  "MLP": {
+    "success_rate": 0.0,
+    "average_steps": 0.0,
+    "average_reward": 0.0,
+    "causal_understanding_score": 0.0,
+    "generalization_score": 0.0,
+    "instruction_following_score": 0.0,
+    "detailed_metrics": {
+      "basic": {
+        "success_rate": 0.0,
+        "average_steps": 0.0,
+        "average_reward": 0.0
+      },
+      "intervention": {
+        "original_success_rate": 0.0,
+        "swapped_success_rate": 0.0,
+        "adaptation_score": 0.0,
+        "add_obstacle_success_rate": 0.0,
+        "remove_object_success_rate": 0.0,
+        "with_causal_action": 0.0,
+        "without_causal_action": 0.0,
+        "counterfactual_understanding": 0.0
+      },
+      "generalization": {
+        "source_performance": 0.0,
+        "transfer_to_complex": 0.0,
+        "average_transfer": 0.0,
+        "transfer_retention": 0.0,
+        "compositional_complex": 0.0,
+        "average_compositional": 0.0
+      },
+      "language": {
+        "simple_instruction_success": 0.0,
+        "sequential_instruction_success": 0.0,
+        "conditional_instruction_success": 0.0,
+        "spatial_instruction_success": 0.0,
+        "causal_instruction_success": 0.0,
+        "overall_instruction_following": 0.0,
+        "average_compositional_language": 0.5
+      }
+    }
+  },
+  "Random": {
+    "success_rate": 0.0,
+    "average_steps": 0.0,
+    "average_reward": 0.0,
+    "causal_understanding_score": 0.0,
+    "generalization_score": 0.0,
+    "instruction_following_score": 0.0,
+    "detailed_metrics": {
+      "basic": {
+        "success_rate": 0.0,
+        "average_steps": 0.0,
+        "average_reward": 0.0
+      },
+      "intervention": {
+        "original_success_rate": 0.0,
+        "swapped_success_rate": 0.0,
+        "adaptation_score": 0.0,
+        "add_obstacle_success_rate": 0.0,
+        "remove_object_success_rate": 0.0,
+        "with_causal_action": 0.0,
+        "without_causal_action": 0.0,
+        "counterfactual_understanding": 0.0
+      },
+      "generalization": {
+        "source_performance": 0.0,
+        "transfer_to_complex": 0.0,
+        "average_transfer": 0.0,
+        "transfer_retention": 0.0,
+        "compositional_complex": 0.0,
+        "average_compositional": 0.0
+      },
+      "language": {
+        "simple_instruction_success": 0.0,
+        "sequential_instruction_success": 0.0,
+        "conditional_instruction_success": 0.0,
+        "spatial_instruction_success": 0.0,
+        "causal_instruction_success": 0.0,
+        "overall_instruction_following": 0.0,
+        "average_compositional_language": 0.5
+      }
+    }
+  }
+}
