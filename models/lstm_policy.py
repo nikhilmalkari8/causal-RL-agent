@@ -6,7 +6,7 @@ import numpy as np
 import random
 from collections import deque
 
-class LSTMPolicy(nn.Module):
+class EnhancedLSTMPolicy(nn.Module):
     def __init__(self, input_dim, hidden_dim, action_dim, dropout=0.1):
         super(EnhancedLSTMPolicy, self).__init__()
         self.hidden_dim = hidden_dim

@@ -3,7 +3,7 @@ import gymnasium as gym
 import numpy as np
 import random
 from envs.causal_gridworld import CausalDoorEnv
-from models.lstm_policy import LSTMPolicy
+from models.lstm_policy import EnhancedLSTMPolicy
 from agents.ppo_lstm_agent import PPOAgent
 
 def preprocess_obs(obs):
@@ -18,7 +18,7 @@ def train():
     hidden_dim = 256  # Increased capacity
     action_dim = env.action_space.n
 
-    policy = LSTMPolicy(input_dim, hidden_dim, action_dim)
+    policy = EnhancedLSTMPolicy(input_dim, hidden_dim, action_dim)
     
     # Reduced learning rate for stability
     agent = PPOAgent(policy, lr=1e-4, clip_epsilon=0.15, entropy_coef=0.05)
@@ -151,7 +151,7 @@ def test_trained_model(model_path):
     hidden_dim = 256
     action_dim = env.action_space.n
     
-    policy = LSTMPolicy(input_dim, hidden_dim, action_dim)
+    policy = EnhancedLSTMPolicy(input_dim, hidden_dim, action_dim)
     policy.load_state_dict(torch.load(model_path))
     policy.eval()
     
