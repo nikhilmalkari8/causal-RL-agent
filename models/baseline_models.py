@@ -177,7 +177,7 @@ class CNNBaseline(nn.Module):
         
         # CNN forward
         conv_features = self.conv_layers(state_embeds)  # (batch_size, 256, 4, 4)
-        conv_features = conv_features.reshape(batch_size, -1)  # (batch_size, 256*4*4) - use reshape instead of view
+        conv_features = conv_features.reshape(batch_size, -1)  # (batch_size, 256*4*4)
         
         # Process features
         features = self.feature_processor(conv_features)
