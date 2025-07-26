@@ -170,27 +170,96 @@ class EnhancedCausalEnv(gym.Env):
             },
             
             "intervention_test": {
-                # Environment specifically designed for intervention testing
                 "grid_size": (10, 10),
                 "agent_start": (1, 1),
                 "objects": [
-                    (ObjectType.SWITCH, (2, 1)),  # Fixed: Match visual position
-                    (ObjectType.DOOR_CLOSED, (5, 4)),  # Fixed: Match visual position  
-                    (ObjectType.GOAL, (8, 8))
+                    (ObjectType.SWITCH, (3, 2)),     # Switch accessible from start
+                    (ObjectType.DOOR_CLOSED, (5, 5)), # Door in middle blocking path
+                    (ObjectType.GOAL, (8, 8))        # Goal in corner
                 ],
-                "walls": [],
+                "walls": [
+                    # Create walls that FORCE going through door
+                    [(4, 3), (4, 7)],  # Left wall
+                    [(6, 3), (6, 7)],  # Right wall
+                    [(4, 3), (6, 3)],  # Bottom wall
+                    [(4, 7), (5, 7)],  # Top-left wall
+                    [(6, 7), (6, 7)],  # Top-right wall
+                    # This creates corridor where door at (5,5) is ONLY way through
+                ],
                 "causal_rules": [
                     {
-                        "trigger": (ObjectType.SWITCH, (2, 1)),  # Fixed: Match object position
-                        "effect": (ObjectType.DOOR_CLOSED, (5, 4)),  # Fixed: Match object position
+                        "trigger": (ObjectType.SWITCH, (3, 2)),
+                        "effect": (ObjectType.DOOR_CLOSED, (5, 5)),
                         "new_state": ObjectType.DOOR_OPEN,
-                        "description": "Switch controls door"
+                        "description": "Switch opens door - REQUIRED for goal"
                     }
                 ]
             }
         }
         
         return configs.get(config_name, configs["default"])
+    
+    def step(self, action: int):
+        self.steps += 1
+        reward = 0.0  # Start with 0, not negative
+        done = False
+        
+        # Get new position based on action
+        new_pos = self._get_new_position(action)
+        
+        # Check if movement is valid
+        if self._can_move_to(new_pos):
+            old_pos = self.agent_pos
+            self.agent_pos = new_pos
+            
+            # CLEAR reward structure
+            obj_at_pos = self.grid[new_pos]
+            
+            # Switch activation - BIG reward
+            if obj_at_pos == ObjectType.SWITCH.value and action == 4:  # Interact
+                if new_pos not in self.activated_objects:
+                    self.activated_objects.add(new_pos)
+                    self._apply_causal_effects_for_switch(new_pos)
+                    reward += 5.0  # BIG reward for switch
+                    print(f"🔧 SWITCH ACTIVATED! Reward +5.0")
+            
+            # Goal reached - HUGE reward
+            elif obj_at_pos == ObjectType.GOAL.value:
+                reward += 20.0  # HUGE reward for goal
+                done = True
+                print(f"🏆 GOAL REACHED! Reward +20.0")
+            
+            elif len(self.activated_objects) > 0:  # Switch has been activated
+                # Give small reward for getting closer to goal
+                goal_distance = abs(self.agent_pos[0] - self.goal_pos[0]) + abs(self.agent_pos[1] - self.goal_pos[1])
+                max_distance = 14  # Max possible distance in 10x10 grid
+                proximity_reward = 0.1 * (1 - goal_distance / max_distance)  # 0 to 0.1 based on closeness
+                reward += proximity_reward
+                
+                # Extra reward for being in the goal area (bottom right quadrant)
+                if self.agent_pos[0] >= 6 and self.agent_pos[1] >= 6:
+                    reward += 0.2
+                
+                # Extra reward for passing through the door area
+                if tuple(self.agent_pos) == (5, 5) or (abs(self.agent_pos[0] - 5) + abs(self.agent_pos[1] - 5)) <= 1:
+                    reward += 0.5  # Good reward for door area navigation
+            
+            # Small step penalty only if no progress
+            else:
+                reward -= 0.01
+        
+        else:
+            # Blocked movement - small penalty
+            reward -= 0.1
+        
+        # Update grid
+        self.grid[self.agent_pos] = ObjectType.AGENT.value
+        
+        # Time limit
+        if self.steps >= self.max_steps:
+            done = True
+        
+        return self._get_observation(), reward, done, False, self._get_info()
     
     def _setup_environment(self):
         """Setup environment from configuration"""
