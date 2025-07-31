@@ -20,9 +20,9 @@ class EnhancedPPOAgent:
                  policy,
                  lr: float = 1e-4,              # HIGHER learning rate (was 3e-4)
                  gamma: float = 0.99,
-                 clip_epsilon: float = 0.2,
+                 clip_epsilon: float = 0.3,
                  value_loss_coef: float = 0.5,
-                 entropy_coef: float = 0.04,     # MUCH higher exploration (was 0.01)
+                 entropy_coef: float = 0.05,     # MUCH higher exploration (was 0.01)
                  causal_loss_coef: float = 0.5, # MUCH stronger causal focus (was 0.1)
                  max_grad_norm: float = 0.5,
                  ppo_epochs: int = 4,
@@ -76,7 +76,7 @@ class EnhancedPPOAgent:
     def select_action_stochastic(self, 
                                 state: torch.Tensor, 
                                 instruction_tokens: Optional[torch.Tensor] = None,
-                                temperature: float = 1.2) -> Tuple[int, torch.Tensor, torch.Tensor]:
+                                temperature: float = 1.5) -> Tuple[int, torch.Tensor, torch.Tensor]:
         """
         ENHANCED: Stochastic action selection for TRAINING with temperature
         Use this during training for better exploration
